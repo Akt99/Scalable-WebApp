@@ -12,9 +12,9 @@ const HomePage = () => {
 
         <section className="rounded-3xl bg-white/80 p-8 shadow-xl backdrop-blur dark:bg-slate-900/70">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-700 dark:text-brand-300">Starter</p>
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Auth + Dashboard + CRUD</h2>
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Welcome to the dashboard</h2>
           <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">
-            Build and test registration, login, protected routes, profile updates, and task management in one place.
+            If you are new here please register
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
