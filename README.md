@@ -6,6 +6,8 @@ Full-stack app with:
 - MongoDB database
 - JWT authentication and protected dashboard routes
 
+## Working Demo Video is available at the release section and also at : 
+https://drive.google.com/file/d/18HXjqjAiI4NGhCnODeVPQu9-swLxOubb/view?usp=drive_link
 ## Project Structure
 
 - `/frontend`: React app (Vite + Tailwind)
