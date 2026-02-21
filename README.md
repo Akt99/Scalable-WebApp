@@ -66,6 +66,47 @@ npm run dev
 
 Frontend runs at `http://localhost:5173`.
 
+## Run Website With Docker (Recommended Quick Start)
+
+Use this when you want the website running via Docker with production-like setup.
+
+### 1. Prepare production env
+
+```bash
+cd /Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/backend
+cp .env.production.example .env.production
+```
+
+Edit `/Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/backend/.env.production` and set:
+- `MONGO_URI` (Atlas connection string)
+- `JWT_SECRET`
+- `CORS_ORIGIN=http://localhost`
+
+### 2. Build and run containers
+
+```bash
+cd /Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+### 3. Verify containers are running
+
+```bash
+docker compose -f docker-compose.prod.yml ps
+```
+
+### 4. Open the website
+
+- Frontend: `http://localhost`
+- API health: `http://localhost/health`
+
+### 5. View logs and stop
+
+```bash
+docker compose -f docker-compose.prod.yml logs -f
+docker compose -f docker-compose.prod.yml down
+```
+
 ## Docker Deployment (Production)
 
 This repo includes:
