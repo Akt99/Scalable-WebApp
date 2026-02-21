@@ -66,6 +66,63 @@ npm run dev
 
 Frontend runs at `http://localhost:5173`.
 
+## Docker Deployment (Production)
+
+This repo includes:
+- `/Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/backend/Dockerfile`
+- `/Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/frontend/Dockerfile`
+- `/Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/frontend/nginx/default.conf`
+- `/Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/docker-compose.prod.yml`
+
+### 1. Prepare backend production env
+
+```bash
+cd /Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/backend
+cp .env.production.example .env.production
+```
+
+Update `/Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp/backend/.env.production` with your real values (`MONGO_URI`, `JWT_SECRET`, `CORS_ORIGIN`, etc.).
+
+### 2. Local production test
+
+```bash
+cd /Users/arnabkumartripathy/Desktop/MERN/PROJECTS/scalablewebapp
+docker compose -f docker-compose.prod.yml up --build -d
+docker compose -f docker-compose.prod.yml ps
+```
+
+App URL:
+- `http://localhost`
+
+Stop containers:
+
+```bash
+docker compose -f docker-compose.prod.yml down
+```
+
+### 3. Push images to Docker Hub
+
+```bash
+docker login
+docker tag scalablewebapp-backend <your-dockerhub-username>/scalablewebapp-backend:latest
+docker tag scalablewebapp-frontend <your-dockerhub-username>/scalablewebapp-frontend:latest
+docker push <your-dockerhub-username>/scalablewebapp-backend:latest
+docker push <your-dockerhub-username>/scalablewebapp-frontend:latest
+```
+
+### 4. Deploy on Ubuntu VPS
+
+Install Docker + Compose on server, then copy:
+- `docker-compose.server.yml`
+- `backend/.env.production`
+- Update image names in `docker-compose.server.yml`
+
+```bash
+docker compose -f docker-compose.server.yml pull
+docker compose -f docker-compose.server.yml up -d
+docker compose -f docker-compose.server.yml ps
+```
+
 ## API Notes
 
 - Health check: `GET /health`

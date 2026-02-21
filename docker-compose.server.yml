@@ -1,0 +1,16 @@
+services:
+  backend:
+    image: <your-dockerhub-username>/scalablewebapp-backend:latest
+    container_name: scalablewebapp-backend
+    env_file:
+      - ./backend/.env.production
+    restart: unless-stopped
+
+  frontend:
+    image: <your-dockerhub-username>/scalablewebapp-frontend:latest
+    container_name: scalablewebapp-frontend
+    depends_on:
+      - backend
+    ports:
+      - '80:80'
+    restart: unless-stopped

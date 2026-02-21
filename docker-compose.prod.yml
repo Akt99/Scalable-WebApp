@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: scalablewebapp-backend
+    env_file:
+      - ./backend/.env.production
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: /
+    container_name: scalablewebapp-frontend
+    depends_on:
+      - backend
+    ports:
+      - '80:80'
+    restart: unless-stopped
